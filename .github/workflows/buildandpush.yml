@@ -6,7 +6,7 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: Build, Tag, Publish Docker
-      uses: HurricanKai/Publish-Docker-Github-Action@1.12.1
+      uses: HurricanKai/Publish-Docker-Github-Action@master
       with:
         name: julianahrens/latex-alpine
         username: ${{ secrets.DOCKER_USERNAME }}
