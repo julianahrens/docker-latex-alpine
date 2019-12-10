@@ -1,6 +1,8 @@
 FROM alpine:3.10
 
-RUN apk update && \
-    apk add --no-cache biber && \
-    apk add --no-cache texlive-full && \
-    rm -rf /var/cache/apk/*
+MAINTAINER ahrensjulian@web.de
+
+RUN apk update
+RUN apk add --no-cache biber
+RUN apk add --no-cache texlive-full
+RUN rm -rf /var/cache/apk/*
