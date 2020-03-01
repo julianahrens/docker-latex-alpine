@@ -1,32 +1,23 @@
-name: buildx
+name: docker-buildx-push
 
 on:
   push:
-    branches: master
+    branches:
+      - master
 
 jobs:
-  buildx:
+  docker-buildx:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v1
-
-      - name: Set up Docker Buildx
-        id: buildx
-        uses: crazy-max/ghaction-docker-buildx@v1
+      -
+        name: Checkout master
+        uses: actions/checkout@master
+      -
+        name: Build and publish image
+        uses: zmingxie/docker_buildx@master
         with:
-          version: latest
-
-      - name: Available platforms
-        run: echo ${{ steps.buildx.outputs.platforms }}
-
-      - name: Docker Login
-        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: Run Buildx
-        run: |
-          docker buildx build \
-            --platform linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/ppc64le,linux/s390x \
-            --tag "latest" \
-            --output "type=image,push=true" \
-            --file Dockerfile .
+          publish: true
+          imageName: ${{ secrets.IMAGE_NAME }}
+          dockerHubUser: ${{ secrets.DOCKER_USERNAME }}
+          dockerHubPassword: ${{ secrets.DOCKER_PASSWORD }}
+          tag: latest
