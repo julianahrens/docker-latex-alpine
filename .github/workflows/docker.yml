@@ -1,9 +1,12 @@
-name: docker-buildx-push
+name: buildx-and-publish-image
 
 on:
   push:
     branches:
       - master
+    paths:
+      - Dockerfile
+      - .github/workflows/docker.yml
 
 jobs:
   docker-buildx:
@@ -11,13 +14,14 @@ jobs:
     steps:
       -
         name: Checkout master
-        uses: actions/checkout@master
+        uses: actions/checkout@v2
       -
         name: Build and publish image
-        uses: zmingxie/docker_buildx@master
+        uses: zmingxie/docker_buildx@v1.1
         with:
           publish: true
           imageName: ${{ secrets.IMAGE_NAME }}
           dockerHubUser: ${{ secrets.DOCKER_USERNAME }}
           dockerHubPassword: ${{ secrets.DOCKER_PASSWORD }}
+          platform: linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6
           tag: latest
