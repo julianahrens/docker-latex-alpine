@@ -32,3 +32,6 @@ build:
       - document.log
     expire_in: 6 mos
 ```
+
+### Github Actions
+For using with Github Actions is the [Latex Biber Action available](https://github.com/marketplace/actions/latex-biber-action). This action is based on these docker image.
