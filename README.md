@@ -1,6 +1,9 @@
 # docker-latex-alpine
 A minimal docker container for latex on alpine including texlive-full and biber
 
+![](https://github.com/julianahrens/docker-latex-alpine/workflows/buildx-and-publish-image/badge.svg)
+![](https://github.com/julianahrens/docker-latex-alpine/workflows/update-docker-hub-description/badge.svg)
+
 ## How-To Build your Latex Document
 Assumption: Your main document ist called `document.tex`.
 ```bash
