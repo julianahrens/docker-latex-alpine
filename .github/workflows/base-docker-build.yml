@@ -1,4 +1,4 @@
-name: [base] docker buildx
+name: "[base] docker buildx"
 
 on:
   push:
