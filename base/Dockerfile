@@ -1,6 +1,6 @@
 FROM alpine:3.12.0
 
-MAINTAINER ahrensjulian@web.de
+MAINTAINER julianahrens
 
 RUN apk update
 RUN apk add --no-cache biber
