@@ -1,6 +1,6 @@
-FROM alpine:3.12.0
+FROM alpine:3.12.1
 
-MAINTAINER julianahrens
+MAINTAINER Julian Ahrens docker@julianahrens.de
 
 RUN apk update
 RUN apk add --no-cache biber

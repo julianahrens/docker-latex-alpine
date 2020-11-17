@@ -1,10 +1,10 @@
-name: "[base] update description"
+name: "update description"
 on:
   push:
     branches:
       - master
     paths:
-      - base/README.md
+      - README.md
       - .github/workflows/dockerhub-description.yml
 jobs:
   dockerHubDescription:
@@ -17,4 +17,4 @@ jobs:
         DOCKERHUB_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKERHUB_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         DOCKERHUB_REPOSITORY: ${{ secrets.IMAGE_NAME }}
-        README_FILEPATH: ./base/README.md
+        README_FILEPATH: ./README.md

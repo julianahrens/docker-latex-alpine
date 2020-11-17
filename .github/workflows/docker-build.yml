@@ -1,0 +1,39 @@
+name: "docker build"
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - Dockerfile
+      - .github/workflows/base-docker-build.yml
+
+jobs:
+  docker-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout master
+        uses: actions/checkout@v2
+
+      - name: docker login
+        run: |
+          echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+          echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u julianahrens --password-stdin
+
+      - name: docker build
+        run: |
+          docker build -t ${{ secrets.IMAGE_NAME }}:latest .
+          docker tag ${{ secrets.IMAGE_NAME }}:latest ${{ secrets.IMAGE_NAME }}:${GITHUB_SHA::8}
+          docker tag ${{ secrets.IMAGE_NAME }}:latest ghcr.io/${GITHUB_REPOSITORY}:latest
+          docker tag ${{ secrets.IMAGE_NAME }}:latest ghcr.io/${GITHUB_REPOSITORY}:${GITHUB_SHA::8}
+
+      - name: docker push
+        run: |
+          docker push ${{ secrets.IMAGE_NAME }}:latest
+          docker push ${{ secrets.IMAGE_NAME }}:${GITHUB_SHA::8}
+          docker push ghcr.io/${GITHUB_REPOSITORY}:latest
+          docker push ghcr.io/${GITHUB_REPOSITORY}:${GITHUB_SHA::8}
+
+      - name: clear
+        run: |
+          rm -f ${HOME}/.docker/config.json
