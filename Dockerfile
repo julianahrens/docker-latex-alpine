@@ -1,4 +1,4 @@
-FROM alpine:3.13.0
+FROM alpine:3.13.2
 
 MAINTAINER Julian Ahrens docker@julianahrens.de
 
