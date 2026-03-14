@@ -1,8 +1,12 @@
 # docker-latex-alpine
+
 A minimal docker container for latex on alpine including texlive-full and biber
 
-![](https://github.com/julianahrens/docker-latex-alpine/workflows/buildx-and-publish-image/badge.svg)
-![](https://github.com/julianahrens/docker-latex-alpine/workflows/update-docker-hub-description/badge.svg)
+## Archival Notice
+
+> [!IMPORTANT]
+> This repository is no longer actively maintained and is considered **archived**.  
+> For compiling LaTeX documents in GitHub Actions, it is recommended to use the "LaTeX Compilation" GitHub Action instead: <https://github.com/marketplace/actions/latex-compilation>.
 
 ## How-To Build your Latex Document
 Assumption: Your main document ist called `document.tex`.
